@@ -1,0 +1,23 @@
+<% @title = 'ログイン'%>
+
+<div id='login-form'>
+  <h1><%= @title %></h1>
+
+  <!--@formはフォームオブジェクト（又はモデルオブジェクト）-->
+  <%= form_for @form, url: :admin_session do |f| %>
+  <div>
+    <%= f.label :email, 'メールアドレス' %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password, 'パスワード' %>
+    <%= f.text_field :password %>
+  </div>
+
+  <div>
+    <%= f.submit 'ログイン' %>
+  </div>
+
+  <% end %>
+</div>
