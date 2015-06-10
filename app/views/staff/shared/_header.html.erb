@@ -3,7 +3,6 @@
   <%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
   <%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
 
-
   <%=
     if current_staff_member
       link_to 'ログアウト', :staff_session, method: :delete
@@ -11,5 +10,5 @@
       link_to 'ログイン', :staff_login
     end
   %>
-
 </header>
+<!--no issue-->

@@ -11,3 +11,4 @@ class StaffMember < ActiveRecord::Base
     end
   end
 end
+#多分no issue, when compared to administrator.rb

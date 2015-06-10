@@ -11,3 +11,4 @@ class Administrator < ActiveRecord::Base
     end
   end
 end
+#no issue

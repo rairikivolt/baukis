@@ -13,3 +13,4 @@ class Staff::Authenticator
     BCrypt::Password.new(@staff_member.hashed_password) == raw_password
   end
 end
+#no issues

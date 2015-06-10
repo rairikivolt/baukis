@@ -4,8 +4,8 @@ class CreateAdministrators < ActiveRecord::Migration
       t.string :email, null: false
       t.string :email_for_index, null:false
       t.string :hashed_password
-      t.boolean :suspend, null:false, defult: false
-
+      t.boolean :suspended, null:false, default: false
+#should be suspended - fixed*
       t.timestamps
     end
     add_index :administrators, :email_for_index, unique: true
