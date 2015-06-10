@@ -1,22 +1,27 @@
 Rails.application.routes.draw do
 
-  namespace :staff do #", path: ''" (P191)がうまく/loginに行かなかったので一旦外す
-    root 'top#index'
-    get 'login' => 'sessions#new', as: :login
-    post 'login' => 'sessions#create', as: :session
+  namespace :staff, path: '' do
+    root   'top#index'
+    get    'login'   => 'sessions#new',    as: :login
+    post   'session' => 'sessions#create', as: :session
     delete 'session' => 'sessions#destroy'
   end
-
+#post 'login' => post 'session'
   namespace :admin do
     root 'top#index'
-    get 'login' => 'sessions#new', as: :login
-    post 'login' => 'sessions#create', as: :session
+    get    'login'   => 'sessions#new',    as: :login
+    post   'session' => 'sessions#create', as: :session
     delete 'session' => 'sessions#destroy'
+    resources :staff_members
   end
-
+#post 'login' => post 'session'
   namespace :customer do
     root 'top#index'
   end
+#No issues
+
+  root 'errors#not_found'
+  get '*anything' => 'errors#not_found'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

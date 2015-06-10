@@ -8,7 +8,7 @@ class Staff::SessionsController < Staff::Base
       render action: 'new'
     end
   end
- 
+#ここに半角のスペースがあった:0 OMG!
   def create
     #paramsオブジェクト params[:x]は一種のハッシュ（正確に言えばActionController::Parametersクラスのインスタンス)
     #例：
@@ -24,10 +24,10 @@ class Staff::SessionsController < Staff::Base
 
     if Staff::Authenticator.new(staff_member).authenticate(@form.password) #authenticato.rbを作成し、'staff_member'から変更。ユーザー認証機能が追加されている
       if staff_member.suspended?
-        flash.alert = "アカウントが停止されています。"
+        flash.now.alert = "アカウントが停止されています。" #added .now since forgot
         render action: 'new'
       else
-        session[:staff_memeber_id] = staff_member.id #session object, not session var, session_member_idをセットしてログインと分かる
+        session[:staff_member_id] = staff_member.id #session object, not session var, session_member_idをセットしてログインと分かる
         flash.notice = 'ログインしましたXD'
         redirect_to :staff_root
       end
@@ -38,7 +38,7 @@ class Staff::SessionsController < Staff::Base
   end
 
   def destroy
-    session.delete(:staff_memeber_id)
+    session.delete(:staff_member_id)
     flash.notice = 'ログアウトしましたXD'
     redirect_to :staff_root
   end

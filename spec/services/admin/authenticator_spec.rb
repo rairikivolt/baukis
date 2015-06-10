@@ -18,8 +18,9 @@ describe Admin::Authenticator do
     end
 
     example '停止フラグが立っていればTrueを返す' do
-      m = FactoryGirl.build(:administrator, suspend: true)
+      m = FactoryGirl.build(:administrator, suspended: true)
       expect(Admin::Authenticator.new(m).authenticate('pw')).to be_truthy
     end
   end
 end
+#should be suspended - fixed

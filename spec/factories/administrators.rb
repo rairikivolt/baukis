@@ -5,3 +5,4 @@ FactoryGirl.define do
     suspend false
   end
 end
+#should be suspended - fixed

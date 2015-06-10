@@ -3,3 +3,4 @@ class Staff::LoginForm
 
   attr_accessor :email, :password
 end
+#no issues

@@ -15,7 +15,7 @@ class Admin::SessionsController < Admin::Base
       administrator = Administrator.find_by(email_for_index: @form.email.downcase)
     end
     if Admin::Authenticator.new(administrator).authenticate(@form.password)
-      if administrator.suspended?
+      if administrator.suspended?   #should be suspended - fixed
         flash.alert = "アカウントが停止されています。"
         render action: 'new'
       else
@@ -30,7 +30,7 @@ class Admin::SessionsController < Admin::Base
   end
 
   def destroy
-    session.delete(administrator_id)
+    session.delete(:administrator_id)
     flash.notice = 'ログアウトしましたXD'
     redirect_to :admin_root
   end
