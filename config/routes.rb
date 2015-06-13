@@ -1,25 +1,35 @@
 Rails.application.routes.draw do
+  config = Rails.application.config.baukis
 
-  namespace :staff, path: '' do
-    root   'top#index'
-    get    'login'   => 'sessions#new',    as: :login
-    post   'session' => 'sessions#create', as: :session
-    delete 'session' => 'sessions#destroy'
+  constraints host: config[:staff][:host] do
+    namespace :staff, path: config[:staff][:path] do
+      root   'top#index'
+      get    'login'   => 'sessions#new',    as: :login
+      post   'session' => 'sessions#create', as: :session
+      delete 'session' => 'sessions#destroy'
+      resource :session, only: [:create, :destroy]
+      resource :account, except: [:new, :create, :destroy]
+    end
+  end
+  #post 'login' => post 'session'
+
+  constraints host: config[:admin][:host] do
+    namespace :admin, path: config[:admin][:path] do
+      root 'top#index'
+      get    'login'   => 'sessions#new',    as: :login
+      post   'session' => 'sessions#create', as: :session
+      delete 'session' => 'sessions#destroy'
+      resource :session, only: [:create, :destroy]
+      resources :staff_members
+    end
   end
 #post 'login' => post 'session'
-  namespace :admin do
-    root 'top#index'
-    get    'login'   => 'sessions#new',    as: :login
-    post   'session' => 'sessions#create', as: :session
-    delete 'session' => 'sessions#destroy'
-    resources :staff_members
+  constraints host: config[:customer][:host] do
+    namespace :customer, path: config[:customer][:path] do
+      root 'top#index'
+    end
   end
-#post 'login' => post 'session'
-  namespace :customer do
-    root 'top#index'
-  end
-#No issues
-
+  #No issues
   root 'errors#not_found'
   get '*anything' => 'errors#not_found'
 
