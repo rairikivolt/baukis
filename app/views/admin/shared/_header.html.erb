@@ -1,5 +1,6 @@
 <header>
-  <span class="logo-mark">BAUKIS</span>
+  <!--<span class="logo-mark">BAUKIS</span> deleted in P216 and added below -->
+  <%= link_to 'BAUKIS', :admin_root, class: 'logo-mark' %>
   <%= content_tag(:span, flash.notice, class: 'notice') if flash.notice %>
   <%= content_tag(:span, flash.alert, class: 'alert') if flash.alert %>
 
