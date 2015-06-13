@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       root 'top#index'
     end
   end
-  #No issues
+#No issues
   root 'errors#not_found'
   get '*anything' => 'errors#not_found'
 

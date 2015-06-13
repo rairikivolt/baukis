@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper' # spec_helper -> rails_helper
 #Need to review, gets no_method_error 'baukis' or 'rout_to'
 describe 'ルーティング' do
   example '職員トップページ' do
@@ -40,3 +40,5 @@ describe 'ルーティング' do
     )
   end
 end
+
+#test not confirmed
