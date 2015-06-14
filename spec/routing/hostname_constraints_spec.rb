@@ -33,12 +33,11 @@ describe 'ルーティング' do
   end
 
   example '顧客トップページ' do
-    expect(get: 'example.com/mypage').to route_to(
+    expect(get: 'http://example.com/mypage').to route_to(
     host: 'example.com',
     controller: 'customer/top',
     action: 'index'
     )
   end
 end
-
-#test not confirmed
+#forgot to add 'http://'

@@ -6,7 +6,7 @@ describe Admin::StaffMembersController do
   describe '#create' do
     example '職員一覧ページにリダイレクト' do
       post :create, staff_member: params_hash
-      expect(response).to redirect_to(admin_staff_member_url)
+      expect(response).to redirect_to(admin_staff_members_url) #admin_staff_member's' was not plural
     end
 
     example "例外ActionController::ParameterMissingが発生" do
@@ -36,4 +36,4 @@ describe Admin::StaffMembersController do
   end
 end
 
-#test not confirmed
+#test passed!
