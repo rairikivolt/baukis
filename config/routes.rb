@@ -3,23 +3,18 @@ Rails.application.routes.draw do
 
   constraints host: config[:staff][:host] do
     namespace :staff, path: config[:staff][:path] do
-      root   'top#index'
-      get    'login'   => 'sessions#new',    as: :login
-      post   'session' => 'sessions#create', as: :session
-      delete 'session' => 'sessions#destroy'
-      resource :session, only: [:create, :destroy]
-      resource :account, except: [:new, :create, :destroy]
+      root 'top#index'
+      get 'login' => 'sessions#new', as: :login
+      resource :session, only: [ :create, :destroy ]
+      resource :account, except: [ :new, :create, :destroy ]
     end
   end
   #post 'login' => post 'session'
-
   constraints host: config[:admin][:host] do
     namespace :admin, path: config[:admin][:path] do
       root 'top#index'
-      get    'login'   => 'sessions#new',    as: :login
-      post   'session' => 'sessions#create', as: :session
-      delete 'session' => 'sessions#destroy'
-      resource :session, only: [:create, :destroy]
+      get 'login' => 'sessions#new', as: :login
+      resource :session, only: [ :create, :destroy ]
       resources :staff_members
     end
   end
@@ -29,7 +24,7 @@ Rails.application.routes.draw do
       root 'top#index'
     end
   end
-  #No issues
+#No issues
   root 'errors#not_found'
   get '*anything' => 'errors#not_found'
 

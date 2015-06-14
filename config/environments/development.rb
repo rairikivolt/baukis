@@ -40,5 +40,5 @@ Rails.application.configure do
     admin: {host: 'baukis.example.com', path: 'admin'},
     customer: {host: 'example.com', path: 'mypage'}
   }
-
+#no issues
 end
