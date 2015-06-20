@@ -1,4 +1,5 @@
 class Admin::SessionsController < Admin::Base
+  skip_before_actio :authorize
 
   def new
     if current_administrator
