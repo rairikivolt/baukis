@@ -22,7 +22,7 @@ class Admin::Base < ApplicationController
   end
 
   def check_account
-    if current_administrator && !current_administrator.suspend?
+    if current_administrator && current_administrator.suspended?
       session.delete(:administrator_id)
       flash.alert = 'アカウントが無効になりました。'
       redirect_to :admin_root
