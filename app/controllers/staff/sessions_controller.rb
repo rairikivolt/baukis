@@ -25,11 +25,13 @@ class Staff::SessionsController < Staff::Base
 
     if Staff::Authenticator.new(staff_member).authenticate(@form.password) #authenticato.rbを作成し、'staff_member'から変更。ユーザー認証機能が追加されている
       if staff_member.suspended?
+        staff_member.events.create!(type: 'rejected')
         flash.now.alert = "アカウントが停止されています。" #added .now since forgot
         render action: 'new'
       else
         session[:staff_member_id] = staff_member.id #session object, not session var, session_member_idをセットしてログインと分かる
         session[:last_access_time] = Time.current
+        staff_member.events.create!(type: 'logged_in')
         flash.notice = 'ログインしましたXD'
         redirect_to :staff_root
       end
@@ -41,6 +43,7 @@ class Staff::SessionsController < Staff::Base
 
   def destroy
     session.delete(:staff_member_id)
+    staff_member.events.create!(type: 'logged_out')
     flash.notice = 'ログアウトしましたXD'
     redirect_to :staff_root
   end
