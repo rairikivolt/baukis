@@ -50,6 +50,11 @@ describe StaffMember do
       expect(member).not_to be_valid
     end
 
+    example '記号を含むfamily_nameは無効' do
+      member = build(:staff_member, family_name: '☆%#$')
+      expect(member).not_to be_valid
+    end
+
     example '漢字を含むfamily_name_kanaは無効' do
       member = build(:staff_member, family_name_kana: '試験')
       expect(member).not_to be_valid
@@ -61,7 +66,7 @@ describe StaffMember do
     end
 
     example '他の職員のメールアドレスと重複したemailは無効' do
-      member1 = build(:staff_member)
+      member1 = create(:staff_member) #build > create
       member2 = build(:staff_member, email: member1.email)
       expect(member2).not_to be_valid
     end

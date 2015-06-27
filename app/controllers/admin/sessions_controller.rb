@@ -17,7 +17,7 @@ class Admin::SessionsController < Admin::Base
     end
     if Admin::Authenticator.new(administrator).authenticate(@form.password)
       if administrator.suspended?   #should be suspended - fixed
-        flash.alert = "アカウントが停止されています。"
+        flash.now.alert = "アカウントが停止されています。"
         render action: 'new'
       else
         session[:administrator_id] = administrator.id
