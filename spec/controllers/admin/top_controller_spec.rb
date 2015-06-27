@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe Admin::TopController, 'ログイン前' do
-  let(:administrator) {create(:administrator)}
+describe Admin::TopController, 'ログイン後' do
+  let(:administrator) { create(:administrator) }
 
   before do
     session[:administrator_id] = administrator.id
@@ -9,12 +9,12 @@ describe Admin::TopController, 'ログイン前' do
   end
 
   describe '#index' do
-    example '通常はstaff/top/indexを表示' do
+    example '通常はstaff/top/dashboardを表示' do
       get :index
-      expect(response).to render_template('admin/top/index')
+      expect(response).to render_template('admin/top/dashboard')
     end
 
-    example '停止フラグがセットされたら強制的ログアウト' do
+    example '停止フラグがセットされたら強制的にログアウト' do
       administrator.update_column(:suspended, true)
       get :index
       expect(session[:administrator_id]).to be_nil
@@ -25,8 +25,8 @@ describe Admin::TopController, 'ログイン前' do
       session[:last_access_time] =
         Staff::Base::TIMEOUT.ago.advance(seconds: -1)
       get :index
-      expect(session[:staff_member_id]).to be_nil
-      expect(response).to redirect_to(staff_login_url)
+      expect(session[:administrator_id]).to be_nil
+      expect(response).to redirect_to(admin_login_url)
     end
   end
 end
