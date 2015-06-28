@@ -25,6 +25,9 @@ div#generic-form{
       input[type='checkbox']+label {display:inline-block} /*どう言う事?*/
       input[type='radio']+label {display: inline-block}
     }  /*did not close the div with }*/
+    div.input-block {
+      input { margin-right: $narrow * 2; }
+    }
     div.notes{
       text-align: right;
       font-size: $small;
