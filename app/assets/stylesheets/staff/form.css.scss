@@ -25,6 +25,9 @@ div#generic-form{
       input[type='checkbox']+label {display:inline-block} /*どう言う事?*/
       input[type='radio']+label {display: inline-block}
     }  /*did not close the div with }*/
+    div.input-block {
+      input { margin-right: $narrow * 2; }
+    }
     div.notes{
       text-align: right;
       font-size: $small;
@@ -41,6 +44,11 @@ div#generic-form{
       padding: 0;
       label { color: $red; }
       input { background-color: $pink; }
+    }
+    div.error-message {
+      color: $red;
+      font-size: $small;
+      padding: 0 $very_wide;
     }
   }
 }
