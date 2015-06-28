@@ -45,5 +45,10 @@ div#generic-form{
       label { color: $red; }
       input { background-color: $pink; }
     }
+    div.error-message {
+      color: $red;
+      font-size: $small;
+      padding: 0 $very_wide;
+    }
   }
 }
