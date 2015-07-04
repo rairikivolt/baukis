@@ -1,15 +1,15 @@
 class Customer < ActiveRecord::Base
-  has_one :home_address, dependent: destroy
-  has_one :work_address, dependent: destroy
+  has_one :home_address, dependent: :destroy #destroy > :destroy
+  has_one :work_address, dependent: :destroy
 
   before_validation do
     self.email_for_index = email.downcase if email
   end
 
-  def password=(raw_passsword)
+  def password=(raw_password) # passsword > password
     if raw_password.kind_of?(String)
       self.hashed_password = BCrypt::Password.create(raw_password)
-    else raw_password.nil?
+    elsif raw_password.nil?  # else > elsif
       self.hashed_password = nil
     end
   end
