@@ -1,7 +1,7 @@
 module EmailHolder
   extend ActiveSupport::Concern
 
-  include do
+  included do  #include > included
     include StringNormalizer
 
     before_validation do
@@ -10,7 +10,7 @@ module EmailHolder
     end
 
     validates :email, presence: true, email: { allow_blank: true }
-    validates :email_for_index, uniqueness: { allow_blank: true}
+    validates :email_for_index, uniqueness: { allow_blank: true }
 
     after_validation do
       if errors.include?(:email_for_index) #error > error's'
