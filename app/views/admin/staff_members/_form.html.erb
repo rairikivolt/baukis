@@ -1,3 +1,18 @@
+<%= markup do |m|
+  p = StaffMemberFormPresenter.new(f, self)
+  m << p.notes
+  p.with_options(required: true) do |q|
+    m << q.text_field_block(:email, 'メールアドレス', size: 32)
+    m << q.password_field_block(:password, 'パスワード', size: 32)
+    m << q.full_name_block(:family_name, :given_name, '氏名')
+    m << q.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ')
+    m << q.date_field_block(:start_date, '開始日')
+    m << q.date_field_block(:end_date, '終了日', required: false)
+  end
+  m << p.check_boxes
+end %>
+
+<!--
 <div class='notes'>
   <span class="mark">*</span>印の付いた項目は必須です。
 </div>
@@ -8,10 +23,10 @@
 </div>
 
 <% if f.object.new_record? %> <!-- editではなく、newの時だけ表示するように。フォームが扱っているオブジェクトがDB
-  に保存されているか確認している-->
+  に保存されているか確認している >
 <div>
   <%= f.label :password, 'パスワード', class: 'required'%>
-  <%= f.password_field :password, size: 32, required: true%> <!--text_field -> password_field -->
+  <%= f.password_field :password, size: 32, required: true%> <!--text_field -> password_field >
 </div>
 <% end %>
 
@@ -37,3 +52,4 @@
   <%= f.check_box :suspended %>
   <%= f.label :suspended, 'アカウント停止'%>
 </div>
+-->

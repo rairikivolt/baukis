@@ -1,0 +1,14 @@
+@import 'colors';
+@import 'dimentions';
+
+form.search {
+  padding: $wide;
+  border: solid $dark_gray 1px;
+  background-color: $very_light_gray;
+  div {
+    display: inline-block;
+    padding: 0; //added padding. not in book, but written in source code.
+    margin: $moderate $very_wide $moderate 0;   //margin-right > margin
+    label { margin-right: $moderate }
+  }
+}

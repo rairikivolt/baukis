@@ -1,4 +1,19 @@
-<div class='notes'>
+<%=
+  markup do |m|
+    p = StaffMemberFormPresenter.new(f, self) #m > f
+    m << p.notes
+    p.with_options(required: true) do |q|
+      m << q.text_field_block(:email, 'メールアドレス', size: 32)
+      m << q.full_name_block(:family_name, :given_name, '氏名')
+      m << q.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ')
+    end
+  end
+%>
+
+
+
+<!--
+ <div class='notes'>
   <span class="mark">*</span>印の付いた項目は必須です。
 </div>
 <div>
@@ -15,3 +30,4 @@
   <%= f.text_field :family_name_kana, required: true %>
   <%= f.text_field :given_name_kana, required: true %>
 </div>
+-->
