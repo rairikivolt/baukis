@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper' # spec_helper -> rails_helper
 
 describe String do
   describe '#<<' do
